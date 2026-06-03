@@ -182,6 +182,30 @@
 
   .collapsible { overflow: hidden; transition: max-height 0.25s ease; }
 
+  /* Battle cards */
+  .battle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .battle-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+  .battle-card-header { padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+  .battle-card-title { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .battle-audience { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; margin-left: auto; }
+  .battle-platform-header { background: #1A1A1A; }
+  .battle-platform-header .battle-card-title { color: rgba(255,255,255,0.9); }
+  .battle-platform-header .battle-audience { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); }
+  .battle-client-header { background: var(--bg); }
+  .battle-client-header .battle-card-title { color: var(--text-secondary); }
+  .battle-client-header .battle-audience { background: var(--border); color: var(--text-secondary); }
+  .battle-body { background: var(--bg-card); padding: 0; }
+  .battle-col { padding: 14px 16px; }
+  .battle-col + .battle-col { border-top: 1px solid var(--border); }
+  .battle-col-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .do-label { color: #3B6D11; }
+  .dont-label { color: #A32D2D; }
+  .battle-list { list-style: none; }
+  .battle-list li { font-size: 13px; line-height: 1.55; padding: 5px 0 5px 18px; position: relative; border-bottom: 1px solid var(--border); color: var(--text-primary); }
+  .battle-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .battle-list.do-list li::before { content: '✓'; position: absolute; left: 0; color: #3B6D11; font-weight: 700; font-size: 12px; }
+  .battle-list.dont-list li::before { content: '✕'; position: absolute; left: 0; color: #A32D2D; font-weight: 700; font-size: 12px; }
+
   @media (max-width: 900px) {
     .layout { grid-template-columns: 1fr; }
     .sidebar { position: static; height: auto; }
@@ -379,6 +403,64 @@
         <li>TikTok PM: Ashley. All TikTok content placeholders in the narrative doc are pending — flag if you need pitch materials before they're finalized.</li>
       </ul>
     </div>
+
+    <div class="section-label">Battle cards</div>
+    <div class="battle-grid">
+      <div class="battle-card">
+        <div class="battle-card-header battle-platform-header">
+          <span class="battle-card-title">With TikTok reps</span>
+          <span class="battle-audience">Platform conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Lead with Partnership Ads and media spend — that's their metric.</li>
+              <li>Reference TTCX CLP by name. Ask which of their accounts have active media spend that would qualify.</li>
+              <li>Position #paid as the production engine that unlocks their ad spend targets.</li>
+              <li>Talk creator volume and creative diversity — more assets means more optimization surface for their algorithm.</li>
+              <li>Ask about upcoming client QBRs where creator content is on the agenda.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't pitch #paid as a content agency — pitch as a performance partner.</li>
+              <li>Don't mention competitor platforms or cross-platform usage upfront — it signals the client's spend won't stay on TikTok.</li>
+              <li>Don't promise specific creators or niches before the brief is scoped.</li>
+              <li>Don't lead with price — lead with the media spend unlock math.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="battle-card">
+        <div class="battle-card-header battle-client-header">
+          <span class="battle-card-title">With clients &amp; agencies</span>
+          <span class="battle-audience">Client conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Lead with the funding angle: their media spend can unlock a fully or partially funded creator package.</li>
+              <li>Frame it as incremental value on spend they're likely already doing on TikTok.</li>
+              <li>Emphasize the 5:1 ratio clearly — $150K in media = $30K in free creator production.</li>
+              <li>Highlight that payment flows through TikTok's portal — it's a structured, trusted process.</li>
+              <li>Stress 25-day turnaround for speed-to-market.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't oversell exclusivity or off-platform rights in the opener — scope those as paid add-ons.</li>
+              <li>Don't promise the package is "free" — it's funded against media spend they need to commit to.</li>
+              <li>Don't size the package before confirming the client's actual TikTok media investment.</li>
+              <li>Don't pitch this to clients who have no TikTok media plan — the incentive won't unlock.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ============================== YOUTUBE ============================== -->
@@ -545,6 +627,65 @@
         <li>YouTube PMs: Ashley (US strategy), Natasha (deals + delivery).</li>
       </ul>
     </div>
+
+    <div class="section-label">Battle cards</div>
+    <div class="battle-grid">
+      <div class="battle-card">
+        <div class="battle-card-header battle-platform-header">
+          <span class="battle-card-title">With YouTube reps</span>
+          <span class="battle-audience">Platform conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Use IMA, GCS, LCS, and MRP terminology — it signals you're a serious partner, not a vendor.</li>
+              <li>Lead with Shorts — it's YouTube's current push and what their reps are measured on activating.</li>
+              <li>Emphasize #paid's position as part of their vetted creator agency network — it differentiates us from generic production shops.</li>
+              <li>Ask which of their advertiser accounts have budget for creator-led content this quarter.</li>
+              <li>Reference the full-funnel angle: Shorts for discovery, long-form for conversion — position #paid as the engine for both.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't promise a client is eligible for an incentive — YouTube approves eligibility, not us.</li>
+              <li>Don't pitch GCS packages as flexible — they're not. Manage expectations upfront.</li>
+              <li>Don't bring up competitive platforms in the conversation.</li>
+              <li>Don't quote package pricing without running the YTS Calculator first.</li>
+              <li>Don't engage the #paid Sold Incentive — it's sold out. Redirect to GCS/LCS.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="battle-card">
+        <div class="battle-card-header battle-client-header">
+          <span class="battle-card-title">With clients &amp; agencies</span>
+          <span class="battle-audience">Client conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Lead with the full-funnel story — Shorts drive discovery, long-form converts. Clients get both in one ecosystem.</li>
+              <li>Position creator-led Shorts as the most efficient path to YouTube ad performance.</li>
+              <li>Emphasize 30-day delivery — fast for a platform known for longer production cycles.</li>
+              <li>For LCS/MRP clients, emphasize the custom and flexible nature — these aren't off-the-shelf packages.</li>
+              <li>Be clear that YouTube determines eligibility and funding — frame it as a competitive advantage to even be in consideration.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't guarantee access to an incentive program — eligibility is YouTube's call.</li>
+              <li>Don't present GCS as customizable — set the expectation that Silver and Gold are fixed packages.</li>
+              <li>Don't raise the MRP without confirming the client is a "mature brand" with significant YouTube media spend — the bar is high (5:1).</li>
+              <li>Don't pitch organic YouTube strategy — our lane is paid creator content and Partnership Ads.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ============================== PINTEREST ============================== -->
@@ -613,6 +754,64 @@
         <li>Canada is a growing market for Pinterest; our Canadian expertise is genuinely differentiated — no other Pinterest creator partner covers CA.</li>
         <li>Pinterest PM: Nate.</li>
       </ul>
+    </div>
+
+    <div class="section-label">Battle cards</div>
+    <div class="battle-grid">
+      <div class="battle-card">
+        <div class="battle-card-header battle-platform-header">
+          <span class="battle-card-title">With Pinterest reps</span>
+          <span class="battle-audience">Platform conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Use "JBP Credits" — that's their internal language for the incentive.</li>
+              <li>Lead with our 30-day delivery vs. the 8–10 week industry standard — it's a concrete differentiator that matters to their clients.</li>
+              <li>Emphasize Canadian market coverage — we're the only creator partner filling that gap for Pinterest.</li>
+              <li>Speak to evergreen content and Idea Ads — Pinterest reps care about content that drives sustained discovery, not viral moments.</li>
+              <li>Ask which of their JBP accounts have creator content gaps or upcoming campaign activations.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't pitch to non-JBP clients — the incentive won't unlock and you'll waste everyone's time.</li>
+              <li>Don't position Pinterest as a social platform — it's a search and discovery engine. Language matters.</li>
+              <li>Don't suggest customizing the package — it's fixed. Upsells happen through add-ons only.</li>
+              <li>Don't talk follower counts or virality — Pinterest's creator value is expertise and evergreen relevance, not reach.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="battle-card">
+        <div class="battle-card-header battle-client-header">
+          <span class="battle-card-title">With clients &amp; agencies</span>
+          <span class="battle-audience">Client conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Lead with the discovery angle: Pinterest users are actively looking for products and brands — creator content here converts differently than on other platforms.</li>
+              <li>Emphasize evergreen performance — content doesn't expire after a few days the way it does on TikTok or Instagram.</li>
+              <li>For Canadian clients: we're the only creator partner with Canadian market expertise on Pinterest.</li>
+              <li>Stress 30-day delivery as a competitive advantage — other Pinterest partners take 2–3x longer.</li>
+              <li>The package is curated and efficient: 3 creators, 6 videos, 90-day usage window.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't pitch Pinterest as a brand awareness play — it's a purchase intent and discovery platform. Reframe the objective.</li>
+              <li>Don't promise the client they can customize the creator mix or deliverables — the JBP package is fixed.</li>
+              <li>Don't raise this with clients who don't have a JBP with Pinterest — the program isn't accessible to them.</li>
+              <li>Don't compare Pinterest ROI directly to Meta or TikTok — it's a different funnel stage and audience intent.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -683,6 +882,64 @@
         <li>Scope is always client-funded production + Meta-provided credits. Use the MPA one-sheeter. Share with Meta employees only — not clients directly.</li>
         <li>Meta PM: Nate.</li>
       </ul>
+    </div>
+
+    <div class="section-label">Battle cards</div>
+    <div class="battle-grid">
+      <div class="battle-card">
+        <div class="battle-card-header battle-platform-header">
+          <span class="battle-card-title">With Meta reps (CPs)</span>
+          <span class="battle-audience">Platform conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Use Creative Diversification, Partnership Ads, MPA, JBP, and Advantage+ — their vocabulary, their metrics.</li>
+              <li>Ask directly which of their accounts are eligible for MPA — CPs appreciate directness and it signals you know the program.</li>
+              <li>Position #paid as the fastest path to Partnership Ad activation: we deliver 25–30 assets in 30 days.</li>
+              <li>Lead with the algorithm math: more creative inputs → better Advantage+ optimization → lower CPA → scalable spend.</li>
+              <li>Even for non-MPA clients, ask about Partnership Ad goals — our content is the engine for those regardless of incentive eligibility.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't share the MPA one-sheeter with clients — it's for Meta employees only.</li>
+              <li>Don't frame the MPA as a client benefit in front of clients — Meta manages eligibility and doesn't want us creating that expectation.</li>
+              <li>Don't pitch us as a content agency — pitch as a performance partner that moves their Partnership Ad numbers.</li>
+              <li>Don't cap the pitch at $50K just because that's the max credit — scope the right production budget and let the credit be the bonus.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="battle-card">
+        <div class="battle-card-header battle-client-header">
+          <span class="battle-card-title">With clients &amp; agencies</span>
+          <span class="battle-audience">Client conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Lead with the creative scaling problem: most brands run 3–5 ad variants — Advantage+ needs more to optimize properly.</li>
+              <li>Frame creator content as a performance input, not a brand awareness play — CPAs, creative runway, and algorithmic optimization.</li>
+              <li>If MPA is relevant: vaguely ask if they're "aware of any Meta incentive plans they may be a part of" — don't name the program explicitly without checking with Partnerships first.</li>
+              <li>5 creators × 5–6 assets = 25–30 unique creatives in 30 days. Make the math tangible.</li>
+              <li>Emphasize O&O for 1 year — content has long-term shelf life on Meta.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't proactively raise MPA by name with clients — you don't own that conversation.</li>
+              <li>Don't pitch creator content as purely aesthetic or brand-building — Meta's frame is performance and spend efficiency.</li>
+              <li>Don't promise ad credits or incentives — eligibility is Meta's call, terms are unique per client.</li>
+              <li>Don't undersell production scope because of the $50K credit cap — pitch the right package size for their creative needs.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -797,6 +1054,65 @@
         <li>Creator Agency Partner Program launches May 2026. Do not pitch before launch; check with Natasha for pre-launch activity guidance.</li>
         <li>Snap PM: Natasha.</li>
       </ul>
+    </div>
+
+    <div class="section-label">Battle cards</div>
+    <div class="battle-grid">
+      <div class="battle-card">
+        <div class="battle-card-header battle-platform-header">
+          <span class="battle-card-title">With Snap reps</span>
+          <span class="battle-audience">Platform conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Use "Snap Stars," "Stories," and "Spotlight" — Snap's own creator terminology signals you understand their ecosystem.</li>
+              <li>Lead with closeness and authenticity — Snap's differentiator is tight-knit audiences, not mass reach. Speak to that.</li>
+              <li>Reference the Collab Studio program by name and ask which of their brand accounts have active media spend or upcoming activations.</li>
+              <li>For the Agency Partner Program: ask about advertiser eligibility ahead of the May launch.</li>
+              <li>Emphasize the 90-day usage window — longer shelf life than most platforms and a stronger ad ROI story for their clients.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't pitch off-platform usage — it doesn't exist on Snap. Never promise it.</li>
+              <li>Don't compare Snap to TikTok or Instagram reach metrics — Snap's value is depth of connection, not follower counts.</li>
+              <li>Don't commit to fully-funded packages without first confirming available Collab Studio funds — the 10:1 pool is limited.</li>
+              <li>Don't pitch the Agency Partner Program before May 2026 launch without checking with Natasha first.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="battle-card">
+        <div class="battle-card-header battle-client-header">
+          <span class="battle-card-title">With clients &amp; agencies</span>
+          <span class="battle-audience">Client conversation</span>
+        </div>
+        <div class="battle-body">
+          <div class="battle-col">
+            <div class="battle-col-label do-label">Say this</div>
+            <ul class="battle-list do-list">
+              <li>Lead with the audience quality angle: Snap users engage with content through real friendships — not algorithmic feeds. That's a fundamentally different trust dynamic.</li>
+              <li>946M monthly users, opened 40x per day — it's a high-frequency, high-attention platform.</li>
+              <li>Position Stories for engaged, follower-first campaigns and Spotlight for broader discovery — help clients pick the right format for their objective.</li>
+              <li>The $30K intro package is a low-risk test for first-time Snap activations — easy internal sell.</li>
+              <li>90-day paid usage window is one of the longest in the market — strong value for media teams.</li>
+            </ul>
+          </div>
+          <div class="battle-col">
+            <div class="battle-col-label dont-label">Not this</div>
+            <ul class="battle-list dont-list">
+              <li>Don't promise off-platform usage rights — Snap content stays on Snap, full stop.</li>
+              <li>Don't pitch the $30K intro package to existing Snap advertisers — it's new partners only.</li>
+              <li>Don't pitch $100K (US) or $75K (CA) tiers without confirming VIP/Marque talent availability through partnerships first.</li>
+              <li>Don't pitch the Agency Partner Program coupon before May 2026 — it hasn't launched yet.</li>
+              <li>Don't sell Snap on reach alone — if a client's primary objective is mass impressions, redirect to a different platform or tier.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
