@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#paid Partnership Platform Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F5F0;
+    --bg-card: #FFFFFF;
+    --bg-sidebar: #1A1A1A;
+    --text-primary: #1A1A1A;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border: #E5E2DA;
+    --border-strong: #C8C4BA;
+    --accent-tiktok: #010101;
+    --accent-youtube: #C4302B;
+    --accent-pinterest: #E60023;
+    --accent-meta: #1877F2;
+    --accent-snap: #FFFC00;
+    --snap-text: #000;
+    --pill-active-bg: #1A1A1A;
+    --pill-active-text: #fff;
+    --pill-bg: #ECEAE3;
+    --pill-text: #1A1A1A;
+    --tag-green-bg: #EAF3DE;
+    --tag-green-text: #3B6D11;
+    --tag-amber-bg: #FAEEDA;
+    --tag-amber-text: #854F0B;
+    --tag-red-bg: #FCEBEB;
+    --tag-red-text: #A32D2D;
+    --tag-blue-bg: #E6F1FB;
+    --tag-blue-text: #185FA5;
+    --tag-gray-bg: #F1EFE8;
+    --tag-gray-text: #5F5E5A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
+
+  .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* Sidebar */
+  .sidebar { background: var(--bg-sidebar); color: #fff; padding: 32px 0; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  .sidebar-header { padding: 0 24px 28px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .logo { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+  .sidebar-title { font-size: 18px; font-weight: 600; color: #fff; line-height: 1.3; }
+
+  .sidebar-section { padding: 20px 24px 0; }
+  .sidebar-section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 10px; }
+  .platform-btn { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: none; color: rgba(255,255,255,0.65); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; padding: 9px 12px; border-radius: 8px; cursor: pointer; text-align: left; transition: all 0.15s; margin-bottom: 2px; }
+  .platform-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .platform-btn.active { background: rgba(255,255,255,0.13); color: #fff; font-weight: 500; }
+  .platform-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-tiktok { background: #fff; }
+  .dot-youtube { background: var(--accent-youtube); }
+  .dot-pinterest { background: var(--accent-pinterest); }
+  .dot-meta { background: var(--accent-meta); }
+  .dot-snap { background: var(--accent-snap); }
+
+  .status-badge-sidebar { margin-left: auto; font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 20px; }
+  .active-status { background: rgba(99,217,94,0.2); color: #63D95E; }
+  .dev-status { background: rgba(255,204,0,0.2); color: #FFCC00; }
+  .inactive-status { background: rgba(255,80,80,0.2); color: #FF5050; }
+
+  .sidebar-filter-section { padding: 20px 24px 0; }
+  .filter-btn { display: block; width: 100%; background: none; border: none; color: rgba(255,255,255,0.55); font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 7px 12px; border-radius: 6px; cursor: pointer; text-align: left; transition: all 0.15s; margin-bottom: 2px; }
+  .filter-btn:hover { background: rgba(255,255,255,0.07); color: #fff; }
+  .filter-btn.active { background: rgba(255,255,255,0.12); color: #fff; }
+
+  .team-section { padding: 24px 24px 0; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.08); }
+  .team-title { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 12px; }
+  .team-member { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+  .team-avatar { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.8); flex-shrink: 0; }
+  .team-info { font-size: 12px; }
+  .team-name { color: rgba(255,255,255,0.8); font-weight: 500; }
+  .team-platforms { color: rgba(255,255,255,0.35); font-size: 11px; }
+
+  /* Main content */
+  .main { padding: 40px 48px; overflow-y: auto; }
+  .main-header { margin-bottom: 32px; }
+  .page-title { font-size: 28px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+  .page-subtitle { font-size: 15px; color: var(--text-secondary); }
+  .last-updated { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+
+  /* Search */
+  .search-bar { position: relative; margin-bottom: 28px; }
+  .search-input { width: 100%; padding: 12px 16px 12px 44px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text-primary); outline: none; transition: border-color 0.15s; }
+  .search-input:focus { border-color: var(--border-strong); }
+  .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 17px; }
+  .search-input::placeholder { color: var(--text-muted); }
+
+  /* Filter pills */
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .pill { padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent; background: var(--pill-bg); color: var(--pill-text); transition: all 0.15s; white-space: nowrap; }
+  .pill:hover { border-color: var(--border-strong); }
+  .pill.active { background: var(--pill-active-bg); color: var(--pill-active-text); }
+
+  /* Platform sections */
+  .platform-section { margin-bottom: 48px; }
+  .platform-section.hidden { display: none; }
+  .platform-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px solid var(--border); }
+  .platform-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .icon-tiktok { background: #010101; color: #fff; }
+  .icon-youtube { background: #C4302B; color: #fff; }
+  .icon-pinterest { background: #E60023; color: #fff; }
+  .icon-meta { background: #1877F2; color: #fff; }
+  .icon-snap { background: #FFFC00; color: #000; }
+  .platform-name { font-size: 22px; font-weight: 600; }
+  .platform-tagline { font-size: 14px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* Cards grid */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: border-color 0.15s; }
+  .card:hover { border-color: var(--border-strong); }
+  .card.hidden { display: none; }
+
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; gap: 10px; }
+  .card-title { font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.3; }
+  .card-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .badge { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+  .badge-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
+  .badge-amber { background: var(--tag-amber-bg); color: var(--tag-amber-text); }
+  .badge-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
+  .badge-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
+  .badge-gray { background: var(--tag-gray-bg); color: var(--tag-gray-text); }
+
+  .card-status { flex-shrink: 0; }
+
+  /* Card data rows */
+  .data-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .data-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .data-row:first-child { padding-top: 0; }
+  .data-label { color: var(--text-muted); font-size: 12px; font-weight: 500; min-width: 110px; padding-top: 1px; flex-shrink: 0; }
+  .data-value { color: var(--text-primary); line-height: 1.5; }
+  .mono { font-family: 'DM Mono', monospace; font-size: 12px; }
+
+  /* Narrative/sales card */
+  .narrative-card { background: #F0EDE6; border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .narrative-card.hidden { display: none; }
+  .narrative-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+  .narrative-headline { font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; line-height: 1.4; }
+  .narrative-body { font-size: 14px; color: #555; line-height: 1.7; }
+
+  /* Caveats / operating notes */
+  .notes-card { background: #FFF8EC; border: 1px solid #F5DBA0; border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; }
+  .notes-card.hidden { display: none; }
+  .notes-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9A6B00; margin-bottom: 10px; }
+  .notes-list { list-style: none; }
+  .notes-list li { font-size: 13px; color: #6B4A00; line-height: 1.6; padding: 5px 0 5px 16px; position: relative; border-bottom: 1px solid #F5DBA0; }
+  .notes-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .notes-list li::before { content: '→'; position: absolute; left: 0; color: #C88A00; font-weight: 600; }
+
+  /* Add-ons table */
+  .addons-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+  .addons-card.hidden { display: none; }
+  .addons-header { padding: 14px 20px; border-bottom: 1px solid var(--border); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); background: var(--bg); display: grid; grid-template-columns: 1.5fr 2fr 2fr; gap: 12px; }
+  .addons-row { padding: 11px 20px; border-bottom: 1px solid var(--border); font-size: 13px; display: grid; grid-template-columns: 1.5fr 2fr 2fr; gap: 12px; align-items: start; }
+  .addons-row:last-child { border-bottom: none; }
+  .addons-row:hover { background: var(--bg); }
+  .addon-name { font-weight: 500; color: var(--text-primary); }
+  .addon-options { color: var(--text-secondary); line-height: 1.5; font-size: 12px; }
+  .addon-price { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .na-badge { font-size: 11px; color: var(--text-muted); font-style: italic; }
+
+  /* Section dividers */
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; margin-top: 24px; }
+
+  /* Empty state */
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+  .empty-state-icon { font-size: 40px; margin-bottom: 12px; }
+  .empty-state-text { font-size: 15px; }
+
+  /* Expand toggle */
+  .expand-toggle { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--text-muted); cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; padding: 4px 0; margin-top: 4px; }
+  .expand-toggle:hover { color: var(--text-secondary); }
+  .toggle-icon { transition: transform 0.2s; }
+  .toggle-icon.open { transform: rotate(90deg); }
+
+  .collapsible { overflow: hidden; transition: max-height 0.25s ease; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; }
+    .main { padding: 24px 20px; }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="pw-wall" style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#1A1A1A;font-family:'DM Sans',sans-serif;">
+  <div style="background:#242424;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:40px 48px;text-align:center;width:340px;">
+    <div style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;">#paid</div>
+    <div style="font-size:20px;font-weight:600;color:#fff;margin-bottom:6px;">Partnership Hub</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:28px;">Internal use only</div>
+    <input id="pw-input" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()" style="width:100%;padding:11px 14px;background:#1A1A1A;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:10px;" />
+    <div id="pw-error" style="font-size:12px;color:#FF6B6B;margin-bottom:10px;min-height:16px;"></div>
+    <button onclick="checkPw()" style="width:100%;padding:11px;background:#fff;color:#1A1A1A;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Enter</button>
+  </div>
+</div>
+<div id="app-content" style="display:none;">
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">#paid</div>
+    <div class="sidebar-title">Partnership<br>Platform Hub</div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Platforms</div>
+    <button class="platform-btn active" onclick="filterPlatform('all', this)">
+      <span class="platform-dot" style="background: rgba(255,255,255,0.4)"></span>
+      All platforms
+    </button>
+    <button class="platform-btn" onclick="filterPlatform('tiktok', this)">
+      <span class="platform-dot dot-tiktok"></span>
+      TikTok
+      <span class="status-badge-sidebar active-status">Active</span>
+    </button>
+    <button class="platform-btn" onclick="filterPlatform('youtube', this)">
+      <span class="platform-dot dot-youtube"></span>
+      YouTube
+      <span class="status-badge-sidebar active-status">Active</span>
+    </button>
+    <button class="platform-btn" onclick="filterPlatform('pinterest', this)">
+      <span class="platform-dot dot-pinterest"></span>
+      Pinterest
+      <span class="status-badge-sidebar active-status">Active</span>
+    </button>
+    <button class="platform-btn" onclick="filterPlatform('meta', this)">
+      <span class="platform-dot dot-meta"></span>
+      Meta
+      <span class="status-badge-sidebar active-status">Active</span>
+    </button>
+    <button class="platform-btn" onclick="filterPlatform('snap', this)">
+      <span class="platform-dot dot-snap"></span>
+      Snap
+      <span class="status-badge-sidebar active-status">Active</span>
+    </button>
+  </div>
+
+  <div class="sidebar-filter-section" style="margin-top: 24px;">
+    <div class="sidebar-section-label">Quick filters</div>
+    <button class="filter-btn" onclick="quickFilter('always-on', this)">Always on</button>
+    <button class="filter-btn" onclick="quickFilter('us', this)">🇺🇸 US only</button>
+    <button class="filter-btn" onclick="quickFilter('ca', this)">🇨🇦 Canada only</button>
+    <button class="filter-btn" onclick="quickFilter('both', this)">🇺🇸🇨🇦 US + CA</button>
+    <button class="filter-btn" onclick="quickFilter('platform-pays', this)">Platform pays</button>
+    <button class="filter-btn" onclick="quickFilter('client-pays', this)">Client pays</button>
+    <button class="filter-btn" onclick="quickFilter('active', this)">Active now</button>
+    <button class="filter-btn" onclick="quickFilter('media-credits', this)">Media credits</button>
+    <button class="filter-btn" onclick="quickFilter('creator-funds', this)">Creator funds</button>
+  </div>
+
+  <div class="team-section" style="padding-top: 20px;">
+    <div class="team-title">Partnership team</div>
+    <div class="team-member">
+      <div class="team-avatar">M</div>
+      <div class="team-info">
+        <div class="team-name">Mike — Director</div>
+        <div class="team-platforms">All platforms + escalations</div>
+      </div>
+    </div>
+    <div class="team-member">
+      <div class="team-avatar">N</div>
+      <div class="team-info">
+        <div class="team-name">Nate — PM</div>
+        <div class="team-platforms">Meta &amp; Pinterest</div>
+      </div>
+    </div>
+    <div class="team-member">
+      <div class="team-avatar">A</div>
+      <div class="team-info">
+        <div class="team-name">Ashley — Head</div>
+        <div class="team-platforms">YouTube &amp; TikTok</div>
+      </div>
+    </div>
+    <div class="team-member">
+      <div class="team-avatar">N</div>
+      <div class="team-info">
+        <div class="team-name">Natasha — PM</div>
+        <div class="team-platforms">YouTube &amp; Snap</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="main-header">
+    <div class="page-title">Platform Partnership Hub</div>
+    <div class="page-subtitle">All active partnerships — incentive mechanics, package details, caveats, and sales narratives.</div>
+    <div class="last-updated">Last updated: Q2 2026 &nbsp;·&nbsp; Internal use only</div>
+  </div>
+
+  <div class="search-bar">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search partnerships, platforms, incentive types..." oninput="handleSearch(this.value)" />
+  </div>
+
+  <div class="filter-row">
+    <span class="pill active" onclick="toggleFilterPill(this, 'type-all')">All types</span>
+    <span class="pill" onclick="toggleFilterPill(this, 'type-creator')">Creator funds</span>
+    <span class="pill" onclick="toggleFilterPill(this, 'type-media')">Media credits</span>
+  </div>
+
+  <div id="empty-state" class="empty-state" style="display:none">
+    <div class="empty-state-icon">🔎</div>
+    <div class="empty-state-text">No partnerships match your filters.</div>
+  </div>
+
+  <!-- ============================== TIKTOK ============================== -->
+  <div class="platform-section" data-platform="tiktok" id="section-tiktok">
+    <div class="platform-header">
+      <div class="platform-icon icon-tiktok">TT</div>
+      <div>
+        <div class="platform-name">TikTok</div>
+        <div class="platform-tagline">#paid's largest platform by creator activations</div>
+      </div>
+    </div>
+
+    <div class="narrative-card" data-tags="tiktok narrative">
+      <div class="narrative-label">Sales narrative</div>
+      <div class="narrative-headline">"Creator content is what TikTok was built for — and it's the engine behind their biggest ad products."</div>
+      <div class="narrative-body">
+        TikTok's ad performance hinges on native-feeling creator content. The platform's internal teams care about creative quality, creator-to-brand fit, and spend activation tied to creator campaigns. When you pitch TikTok reps, lead with the performance angle — not the content. Their vocabulary is Partnership Ads, CLP, and media spend multiples. The TTCX CLP program is your primary hook: it's always on, fully funded (when media spend qualifies), and managed through TikTok's own portal.
+      </div>
+    </div>
+
+    <div class="section-label">Partnerships</div>
+    <div class="cards-grid">
+      <!-- TTCX CLP -->
+      <div class="card" data-platform="tiktok" data-tags="always-on both creator-funds active platform-pays" data-searchable="tiktok ttcx clp creator led package always on 5:1">
+        <div class="card-header">
+          <div>
+            <div class="card-title">TTCX CLP</div>
+            <div class="card-badges">
+              <span class="badge badge-green">Active</span>
+              <span class="badge badge-green">Always On</span>
+              <span class="badge badge-blue">Creator funds</span>
+              <span class="badge badge-gray">🇺🇸 🇨🇦</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Incentive type</span><span class="data-value">Platform-funded creator packages (5:1 media:creator ratio)</span></div>
+        <div class="data-row"><span class="data-label">How it works</span><span class="data-value">$150K media spend → $30K creator package funded by TikTok. Can be fully client-paid, partially, or fully funded.</span></div>
+        <div class="data-row"><span class="data-label">Min. package</span><span class="data-value mono">$30,000 USD</span></div>
+        <div class="data-row"><span class="data-label">Max. package</span><span class="data-value">No limit (tied to 5:1 media spend)</span></div>
+        <div class="data-row"><span class="data-label">Who pays</span><span class="data-value">TikTok or Client (via TTCX portal)</span></div>
+        <div class="data-row"><span class="data-label">Eligible clients</span><span class="data-value">Any — client selects from TikTok's 9 approved creator-led package partners</span></div>
+        <div class="data-row"><span class="data-label">Standard timeline</span><span class="data-value mono">25 days</span></div>
+        <div class="data-row"><span class="data-label">Included usage</span><span class="data-value">60 days O&O + 60 days paid usage on TikTok. No exclusivity.</span></div>
+        <div class="data-row"><span class="data-label">Package flexibility</span><span class="data-value">Yes</span></div>
+        <div class="data-row"><span class="data-label">Payment flow</span><span class="data-value">Client submits through TTCX portal → TikTok remits to #paid</span></div>
+      </div>
+    </div>
+
+    <div class="section-label">Add-ons (purchasable through TikTok portal)</div>
+    <div class="addons-card" data-tags="tiktok">
+      <div class="addons-header"><span>Add-on</span><span>Options</span><span>% of package price</span></div>
+      <div class="addons-row"><span class="addon-name">Creator Exclusivity</span><span class="addon-options">2 weeks / 1 month / 2 months / 3 months</span><span class="addon-price">5% / 10% / 20% / 30%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Usage</span><span class="addon-options">2 weeks / 1 month / 2 months / 3 months / 4 months<br><em style="font-size:11px">VIP/Celebrity: custom</em></span><span class="addon-price">5% / 10% / 15% / 20% / 25%</span></div>
+      <div class="addons-row"><span class="addon-name">Off-Platform Usage</span><span class="addon-options">1 platform / 2 platforms / 3 platforms<br><em style="font-size:11px">VIP/Celebrity: custom</em></span><span class="addon-price">5% / 10% / 15%</span></div>
+      <div class="addons-row"><span class="addon-name">Expedited Timeline</span><span class="addon-options">Rush (20 days) / Extra Rush (18 days)</span><span class="addon-price">15% / 20%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Edits</span><span class="addon-options">Based on creator pricing</span><span class="addon-price">Based on creator pricing</span></div>
+    </div>
+
+    <div class="notes-card" data-tags="tiktok">
+      <div class="notes-label">Operating notes &amp; caveats</div>
+      <ul class="notes-list">
+        <li>TTCX manages payment as a third party — payment goes through their portal, not directly to #paid.</li>
+        <li>Any client can access TTCX; no pre-approval required unlike YouTube.</li>
+        <li>Funding ratio is always 5:1 (media:creator). Confirm the client's media commitment before sizing a package.</li>
+        <li>TikTok PM: Ashley. All TikTok content placeholders in the narrative doc are pending — flag if you need pitch materials before they're finalized.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================== YOUTUBE ============================== -->
+  <div class="platform-section" data-platform="youtube" id="section-youtube">
+    <div class="platform-header">
+      <div class="platform-icon icon-youtube">YT</div>
+      <div>
+        <div class="platform-name">YouTube</div>
+        <div class="platform-tagline">Shorts hook. Long form converts. Full funnel, one ecosystem.</div>
+      </div>
+    </div>
+
+    <div class="narrative-card" data-tags="youtube narrative">
+      <div class="narrative-label">Sales narrative</div>
+      <div class="narrative-headline">"YouTube treats creators as premium media — not social posts."</div>
+      <div class="narrative-body">
+        YouTube's philosophy maps to full-funnel: Shorts drive discovery and awareness, long-form deepens loyalty and converts. No other platform can do both inside one creator ecosystem. When pitching YouTube reps, speak in IMA, GCS/LCS, MRP, and Shorts. They're measured on creator-led ad spend and media investment. The hook: #paid is part of an exclusive network of vetted creator marketing agencies YouTube has established to bridge the gap between ad sales capabilities and high-performing, creator-led Shorts content.<br><br>
+        <strong style="font-weight: 600;">Creator-led vs. brand-led:</strong> Use creators to drive discovery — brief the objective, let them find the hook. Best for awareness, engagement, and Partnership Ads. Brand-led is for demos, how-tos, and consistent voice over time. The best strategies use both.
+      </div>
+    </div>
+
+    <div class="section-label">US Partnerships</div>
+    <div class="cards-grid">
+      <!-- GCS -->
+      <div class="card" data-platform="youtube" data-tags="us creator-funds active platform-pays" data-searchable="youtube gcs creator packages silver gold shorts ims">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Creator Packages — GCS (US)</div>
+            <div class="card-badges">
+              <span class="badge badge-green">Active</span>
+              <span class="badge badge-blue">Q2 Available</span>
+              <span class="badge badge-gray">🇺🇸 Only</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Package type</span><span class="data-value">Fixed packages. No flexibility on deliverables.</span></div>
+        <div class="data-row"><span class="data-label">Silver $40K</span><span class="data-value">4+ creators (10K–100K subs), 10 YouTube Shorts, 60-day paid usage</span></div>
+        <div class="data-row"><span class="data-label">Gold $75K</span><span class="data-value">4+ creators (100K–1M subs), 10 YouTube Shorts, 60-day paid usage</span></div>
+        <div class="data-row"><span class="data-label">Who pays</span><span class="data-value">YouTube (platform-funded)</span></div>
+        <div class="data-row"><span class="data-label">Eligible clients</span><span class="data-value">YouTube determines — not all clients qualify. Internal approval required.</span></div>
+        <div class="data-row"><span class="data-label">Funds ratio</span><span class="data-value">Not clearly defined</span></div>
+        <div class="data-row"><span class="data-label">Timeline</span><span class="data-value mono">30 days workback</span></div>
+        <div class="data-row"><span class="data-label">Included usage</span><span class="data-value">60 days paid usage on YouTube. No exclusivity.</span></div>
+      </div>
+
+      <!-- LCS -->
+      <div class="card" data-platform="youtube" data-tags="us creator-funds active platform-pays" data-searchable="youtube lcs large creator packages custom flexible">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Creator Packages — LCS (US)</div>
+            <div class="card-badges">
+              <span class="badge badge-green">Active</span>
+              <span class="badge badge-blue">Q2 Available</span>
+              <span class="badge badge-gray">🇺🇸 Only</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Package type</span><span class="data-value">Custom based on ask. More flexible than GCS.</span></div>
+        <div class="data-row"><span class="data-label">Min. package</span><span class="data-value mono">$50,000 USD</span></div>
+        <div class="data-row"><span class="data-label">Max. package</span><span class="data-value">No limit (requires 3:1 media spend)</span></div>
+        <div class="data-row"><span class="data-label">Who pays</span><span class="data-value">YouTube (platform-funded)</span></div>
+        <div class="data-row"><span class="data-label">Eligible clients</span><span class="data-value">YouTube determines — not all clients qualify. Internal approval required.</span></div>
+        <div class="data-row"><span class="data-label">Funds ratio</span><span class="data-value">Not clearly defined (3:1 media spend required)</span></div>
+        <div class="data-row"><span class="data-label">Timeline</span><span class="data-value mono">30 days workback</span></div>
+        <div class="data-row"><span class="data-label">Included usage</span><span class="data-value">60 days paid usage on YouTube. No exclusivity.</span></div>
+      </div>
+
+      <!-- MRP -->
+      <div class="card" data-platform="youtube" data-tags="us creator-funds platform-pays" data-searchable="youtube mrp funds mature brands additional funding">
+        <div class="card-header">
+          <div>
+            <div class="card-title">MRP Funds (US)</div>
+            <div class="card-badges">
+              <span class="badge badge-amber">In Development</span>
+              <span class="badge badge-amber">Q2 Launch</span>
+              <span class="badge badge-gray">🇺🇸 Only</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">What it is</span><span class="data-value">Additional Google funding on top of existing contracts for a pre-approved list of mature brands. Released quarterly by YouTube.</span></div>
+        <div class="data-row"><span class="data-label">Media spend req.</span><span class="data-value">5x media spend vs. the incentive (vs. standard 1–3x for other programs)</span></div>
+        <div class="data-row"><span class="data-label">Pricing</span><span class="data-value">Custom. YouTube determines budget; #paid works with their team on deliverables.</span></div>
+        <div class="data-row"><span class="data-label">Flexibility</span><span class="data-value">More flexible than GCS packages</span></div>
+        <div class="data-row"><span class="data-label">Status note</span><span class="data-value">TBD details — contact Ashley before pitching.</span></div>
+      </div>
+
+      <!-- #paid sold incentive -->
+      <div class="card" data-platform="youtube" data-tags="us creator-funds inactive" data-searchable="youtube paid sold incentive partnership ad spend 2:1">
+        <div class="card-header">
+          <div>
+            <div class="card-title">#paid Sold Incentive (US)</div>
+            <div class="card-badges">
+              <span class="badge badge-red">Not Active</span>
+              <span class="badge badge-red">Q1 Sold Out</span>
+              <span class="badge badge-gray">🇺🇸 Only</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Status</span><span class="data-value" style="color: var(--tag-red-text);">All Q1 packages sold. Not currently available.</span></div>
+        <div class="data-row"><span class="data-label">Package range</span><span class="data-value mono">$50K – $100K</span></div>
+        <div class="data-row"><span class="data-label">Unlock condition</span><span class="data-value">Client must commit to Partnership Ad spend to unlock incentive</span></div>
+        <div class="data-row"><span class="data-label">Funds ratio</span><span class="data-value">2:1</span></div>
+        <div class="data-row"><span class="data-label">Who pays</span><span class="data-value">YouTube (platform-funded)</span></div>
+      </div>
+    </div>
+
+    <div class="section-label">Canada Partnerships</div>
+    <div class="cards-grid">
+      <!-- CA GCS -->
+      <div class="card" data-platform="youtube" data-tags="ca creator-funds" data-searchable="youtube canada gcs incentive program">
+        <div class="card-header">
+          <div>
+            <div class="card-title">GCS Incentive Program (CA)</div>
+            <div class="card-badges">
+              <span class="badge badge-amber">In Development</span>
+              <span class="badge badge-amber">Q2 Launch</span>
+              <span class="badge badge-gray">🇨🇦 Only</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Status</span><span class="data-value">TBD — details pending. Contact Ashley before raising with any client.</span></div>
+        <div class="data-row"><span class="data-label">Packages</span><span class="data-value mono">$30K / $50K / $75K USD</span></div>
+      </div>
+
+      <!-- CA LCS/MRP -->
+      <div class="card" data-platform="youtube" data-tags="ca creator-funds active platform-pays" data-searchable="youtube canada lcs mrp incentive flexible custom">
+        <div class="card-header">
+          <div>
+            <div class="card-title">LCS / MRP Incentive Program (CA)</div>
+            <div class="card-badges">
+              <span class="badge badge-green">Active</span>
+              <span class="badge badge-blue">Q2 Launch</span>
+              <span class="badge badge-gray">🇨🇦 Only</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Package type</span><span class="data-value">Custom based on ask. More flexible than GCS packages.</span></div>
+        <div class="data-row"><span class="data-label">Max. package</span><span class="data-value">Limit based on individual advertiser</span></div>
+        <div class="data-row"><span class="data-label">Who pays</span><span class="data-value">YouTube (platform-funded)</span></div>
+        <div class="data-row"><span class="data-label">Eligible clients</span><span class="data-value">YouTube determines — internal approval required. Not eligible for all clients.</span></div>
+        <div class="data-row"><span class="data-label">Timeline</span><span class="data-value mono">30 days workback</span></div>
+        <div class="data-row"><span class="data-label">Included usage</span><span class="data-value">60 days paid usage on YouTube. No exclusivity.</span></div>
+      </div>
+    </div>
+
+    <div class="section-label">YouTube Add-ons (client pays #paid directly)</div>
+    <div class="addons-card" data-tags="youtube">
+      <div class="addons-header"><span>Add-on</span><span>Options</span><span>% of package price</span></div>
+      <div class="addons-row"><span class="addon-name">Creator Exclusivity</span><span class="addon-options">2 weeks / 1 month / 2 months / 3 months</span><span class="addon-price">5% / 10% / 20% / 30%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Usage</span><span class="addon-options">2 weeks / 1 month / 2 months<br><em style="font-size:11px">VIP/Celebrity: custom</em></span><span class="addon-price">5% / 10% / 15%</span></div>
+      <div class="addons-row"><span class="addon-name">Off-Platform Usage</span><span class="addon-options">1 platform / 2 platforms / 3 platforms<br><em style="font-size:11px">VIP/Celebrity: custom</em></span><span class="addon-price">5% / 10% / 15%</span></div>
+      <div class="addons-row"><span class="addon-name">Expedited Timeline</span><span class="addon-options">Rush (25 days)</span><span class="addon-price">15%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Edits</span><span class="addon-options">Based on creator pricing</span><span class="addon-price">Based on creator pricing</span></div>
+    </div>
+
+    <div class="notes-card" data-tags="youtube">
+      <div class="notes-label">Operating notes &amp; caveats</div>
+      <ul class="notes-list">
+        <li>YouTube (not #paid) determines which clients are eligible — incentives must be approved internally. Do not promise eligibility before confirming.</li>
+        <li>GCS packages have zero flexibility on deliverables. LCS and MRP are more flexible and custom.</li>
+        <li>MRP requires 5:1 media spend (vs. 1–3x standard) — confirm client's media commitment before sizing.</li>
+        <li>#paid Sold Incentive is fully sold out for Q1. Do not pitch this program until new inventory is confirmed.</li>
+        <li>Use the YTS Calculator when sizing any YouTube package.</li>
+        <li>YouTube PMs: Ashley (US strategy), Natasha (deals + delivery).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================== PINTEREST ============================== -->
+  <div class="platform-section" data-platform="pinterest" id="section-pinterest">
+    <div class="platform-header">
+      <div class="platform-icon icon-pinterest">P</div>
+      <div>
+        <div class="platform-name">Pinterest</div>
+        <div class="platform-tagline">Discovery-first. Evergreen by design.</div>
+      </div>
+    </div>
+
+    <div class="narrative-card" data-tags="pinterest narrative">
+      <div class="narrative-label">Sales narrative</div>
+      <div class="narrative-headline">"Pinterest isn't social media — it's a search and discovery engine where creators have influence without chasing it."</div>
+      <div class="narrative-body">
+        Pinterest users go there to find ideas and discover brands — not to be entertained or earn likes. The #1 reason people use Pinterest is to find information about products and brands. Creator content on Pinterest helps audiences discover brands in authentic and relatable ways; ads blend in seamlessly and provide ongoing, evergreen performance.<br><br>
+        What differentiates creators on Pinterest from other platforms: the most influential creators on Pinterest aren't in it for the influence. Expertise, trends, and finding ideas outperform personality-driven content. This is why creator content here compounds over time — it doesn't expire with the news cycle.<br><br>
+        <strong style="font-weight: 600;">#paid's unique advantage:</strong> 30-day delivery (current partners take 8–10 weeks), Canadian market expertise, curated creator handraise process that speeds up activation, and consistent thought leadership that positions us as a strategic partner — not just an executor.
+      </div>
+    </div>
+
+    <div class="section-label">Partnerships</div>
+    <div class="cards-grid">
+      <!-- Pinterest JBP -->
+      <div class="card" data-platform="pinterest" data-tags="both creator-funds active platform-pays" data-searchable="pinterest jbp incentive program joint business plan credits">
+        <div class="card-header">
+          <div>
+            <div class="card-title">JBP Incentive Program</div>
+            <div class="card-badges">
+              <span class="badge badge-green">Active</span>
+              <span class="badge badge-blue">Begins March 2026</span>
+              <span class="badge badge-gray">🇺🇸 🇨🇦</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Incentive type</span><span class="data-value">Creator package funded via JBP Credits (Pinterest's joint business plan)</span></div>
+        <div class="data-row"><span class="data-label">Package value</span><span class="data-value mono">$30,000 USD</span></div>
+        <div class="data-row"><span class="data-label">What's included</span><span class="data-value">3 creators, 6 videos (2 per creator). Creator Agency Account Management. Paid usage: minimum 3-month duration on all assets, Pinterest only.</span></div>
+        <div class="data-row"><span class="data-label">Who pays</span><span class="data-value">Pinterest (via JBP Credits)</span></div>
+        <div class="data-row"><span class="data-label">Eligible clients</span><span class="data-value">JBP clients only — incentive unlocked through JBP Credits</span></div>
+        <div class="data-row"><span class="data-label">Funds ratio</span><span class="data-value">Not clearly defined</span></div>
+        <div class="data-row"><span class="data-label">Package flexibility</span><span class="data-value">No</span></div>
+        <div class="data-row"><span class="data-label">Timeline</span><span class="data-value mono">30 days workback</span></div>
+        <div class="data-row"><span class="data-label">Included usage</span><span class="data-value">90 days O&O + 90 days paid usage on Pinterest. No exclusivity.</span></div>
+      </div>
+    </div>
+
+    <div class="section-label">Pinterest Add-ons (client pays #paid directly)</div>
+    <div class="addons-card" data-tags="pinterest">
+      <div class="addons-header"><span>Add-on</span><span>Options</span><span>% of package price</span></div>
+      <div class="addons-row"><span class="addon-name">Creator Exclusivity</span><span class="addon-options">2 weeks / 1 month / 2 months / 3 months</span><span class="addon-price">5% / 10% / 20% / 30%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Usage</span><span class="addon-options">2 weeks / 1 month / 2 months<br><em style="font-size:11px">VIP/Celebrity: custom</em></span><span class="addon-price">5% / 10% / 15%</span></div>
+      <div class="addons-row"><span class="addon-name">Off-Platform Usage</span><span class="addon-options">1 platform / 2 platforms / 3 platforms<br><em style="font-size:11px">VIP/Celebrity: custom</em></span><span class="addon-price">5% / 10% / 15%</span></div>
+      <div class="addons-row"><span class="addon-name">Expedited Timeline</span><span class="addon-options">Rush (25 days)</span><span class="addon-price">15%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Edits</span><span class="addon-options">Based on creator pricing</span><span class="addon-price">Based on creator pricing</span></div>
+    </div>
+
+    <div class="notes-card" data-tags="pinterest">
+      <div class="notes-label">Operating notes &amp; caveats</div>
+      <ul class="notes-list">
+        <li>Only JBP clients can access the incentive — confirm the client has a JBP with Pinterest before raising this program.</li>
+        <li>Pinterest reps refer to this simply as "JBP Credits." Use that language.</li>
+        <li>Package is fixed: 3 creators, 6 videos. No customization. Upsell via add-ons.</li>
+        <li>30-day delivery is a key differentiator — current Pinterest creator partners take 8–10 weeks. Lead with this.</li>
+        <li>Canada is a growing market for Pinterest; our Canadian expertise is genuinely differentiated — no other Pinterest creator partner covers CA.</li>
+        <li>Pinterest PM: Nate.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================== META ============================== -->
+  <div class="platform-section" data-platform="meta" id="section-meta">
+    <div class="platform-header">
+      <div class="platform-icon icon-meta">M</div>
+      <div>
+        <div class="platform-name">Meta</div>
+        <div class="platform-tagline">Creative diversification. Partnership Ads. MPA.</div>
+      </div>
+    </div>
+
+    <div class="narrative-card" data-tags="meta narrative">
+      <div class="narrative-label">Sales narrative</div>
+      <div class="narrative-headline">"Your clients can't scale spend without scaling creative — and creator content is the most efficient path."</div>
+      <div class="narrative-body">
+        Meta's ad performance problem is a creative diversification problem. Most brands run 3–5 ad variants per campaign. Advantage+ needs volume and variety to optimize. Without it, creative fatigue sets in within 2–3 weeks, CPAs rise, and spend stalls. Creator-powered content solves this: 5 creators × 5–6 assets each = 25–30 unique creative assets in 30 days. More creative inputs → better algorithm optimization → lower CPA → scalable spend.<br><br>
+        The vocabulary that lands with Meta reps: Creative Diversification, Partnership Ads, MPA, JBP, Advantage+. Meta reps are measured on media spend and Partnership Ad activation. Frame the pitch around what unlocks their metrics, not ours.<br><br>
+        <strong style="font-weight: 600;">The MPA is the foot in the door — but don't be limited by it.</strong> Even clients who aren't eligible for MPA are ones Meta reps want spending on Partnership Ads. Position greater creator content volume as the best path to Partnership Ad spend.
+      </div>
+    </div>
+
+    <div class="section-label">Partnerships</div>
+    <div class="cards-grid">
+      <!-- MPA -->
+      <div class="card" data-platform="meta" data-tags="both media-credits active client-pays" data-searchable="meta mpa performance accelerator ad credits partnership ads production">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Meta Performance Accelerator (MPA)</div>
+            <div class="card-badges">
+              <span class="badge badge-green">Active</span>
+              <span class="badge badge-blue">Q2 + Q3 2026</span>
+              <span class="badge badge-gray">🇺🇸 🇨🇦</span>
+              <span class="badge badge-amber">Media credits</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Incentive type</span><span class="data-value">Ad credits on Meta for eligible advertisers who partner with #paid for asset production + hit minimum media spend</span></div>
+        <div class="data-row"><span class="data-label">Max ad credit</span><span class="data-value mono">$50,000 per advertiser per quarter</span></div>
+        <div class="data-row"><span class="data-label">Credit terms</span><span class="data-value">Client receives credit after: (1) receiving deliverables, (2) proving partner contract, (3) hitting minimum spend — all before quarter-end</span></div>
+        <div class="data-row"><span class="data-label">Who pays</span><span class="data-value">Client (production is client-funded; Meta provides the ad credits)</span></div>
+        <div class="data-row"><span class="data-label">Eligible clients</span><span class="data-value">Meta determines — case by case. Ad credit value and minimum spend are unique per client.</span></div>
+        <div class="data-row"><span class="data-label">Funds ratio</span><span class="data-value">Case by case</span></div>
+        <div class="data-row"><span class="data-label">Timeline</span><span class="data-value mono">30 days workback</span></div>
+        <div class="data-row"><span class="data-label">Included usage</span><span class="data-value">Paid on Meta for 60 days. O&O for 1 year.</span></div>
+        <div class="data-row"><span class="data-label">Use WBS</span><span class="data-value">Standard (production is client-funded)</span></div>
+      </div>
+    </div>
+
+    <div class="section-label">Meta Add-ons (client pays #paid directly)</div>
+    <div class="addons-card" data-tags="meta">
+      <div class="addons-header"><span>Add-on</span><span>Options</span><span>% of package price</span></div>
+      <div class="addons-row"><span class="addon-name">Creator Exclusivity</span><span class="addon-options">2 weeks / 1 month / 2 months / 3 months</span><span class="addon-price">5% / 10% / 20% / 30%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Usage</span><span class="addon-options">2 weeks / 1 month / 2 months<br><em style="font-size:11px">VIP/Celebrity: custom</em></span><span class="addon-price">5% / 10% / 15%</span></div>
+      <div class="addons-row"><span class="addon-name">Off-Platform Usage</span><span class="addon-options">1 platform / 2 platforms / 3 platforms<br><em style="font-size:11px">VIP/Celebrity: custom</em></span><span class="addon-price">5% / 10% / 15%</span></div>
+      <div class="addons-row"><span class="addon-name">Expedited Timeline</span><span class="addon-options">Rush (25 days)</span><span class="addon-price">15%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Edits</span><span class="addon-options">Based on creator pricing</span><span class="addon-price">Based on creator pricing</span></div>
+    </div>
+
+    <div class="notes-card" data-tags="meta">
+      <div class="notes-label">Operating notes &amp; caveats — read before pitching</div>
+      <ul class="notes-list">
+        <li><strong style="font-weight:600">Talk freely with Meta CPs.</strong> Discuss MPA by name. Ask which of their accounts are eligible. CP relationships matter — they informally recommend partners they've worked with.</li>
+        <li><strong style="font-weight:600">Do not raise MPA with clients directly.</strong> Meta doesn't want partners as the source of eligibility frustration. In trusted scenarios, vaguely ask if they're "aware of any Meta incentive plans they may be a part of." Check with Partnerships first.</li>
+        <li>Production cost is NOT a 1:1 replacement for the ad credit. Some clients will spend well over $50K. Pitch the right scope, not the cap.</li>
+        <li>Even if a client is not eligible for MPA, Meta reps still want their clients spending on Partnership Ads. Position creator content volume as the path to Partnership Ad activation.</li>
+        <li>Scope is always client-funded production + Meta-provided credits. Use the MPA one-sheeter. Share with Meta employees only — not clients directly.</li>
+        <li>Meta PM: Nate.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================== SNAP ============================== -->
+  <div class="platform-section" data-platform="snap" id="section-snap">
+    <div class="platform-header">
+      <div class="platform-icon icon-snap">S</div>
+      <div>
+        <div class="platform-name">Snap</div>
+        <div class="platform-tagline">Real Friends, Real Influence — closeness over reach.</div>
+      </div>
+    </div>
+
+    <div class="narrative-card" data-tags="snap narrative">
+      <div class="narrative-label">Sales narrative</div>
+      <div class="narrative-headline">"Snap treats creators as trusted amplifiers — not media placements."</div>
+      <div class="narrative-body">
+        Snap's creator philosophy is rooted in closeness and authenticity. Unlike reach-first platforms, Snap believes creators drive value through real relationships with tight-knit audiences — not follower counts. Snap Stars are vetted for their ability to create Stories and Snap content that feels native, personal, and credible to their specific community.<br><br>
+        Quick stats that land with Snap reps: 946M monthly active users globally. 3.5B unique friend pairs snapping daily. Users open Snapchat 40x per day. Top creators post 140x/day across Stories and Spotlight. 100K+ Snap Creators available globally for brand partnerships.<br><br>
+        <strong style="font-weight:600">Stories vs. Spotlight:</strong> A creator Story post is for brands that want organic traction with the creator's followers. A Spotlight post is for brands wanting to reach beyond the creator's followers — wider audience, more discovery-oriented.
+      </div>
+    </div>
+
+    <div class="section-label">US Partnerships</div>
+    <div class="cards-grid">
+      <!-- Snap Collab Studio US -->
+      <div class="card" data-platform="snap" data-tags="both creator-funds active platform-pays always-on" data-searchable="snap collab studio creator packages 30k 50k 100k always on">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Snap Collab Studio (US)</div>
+            <div class="card-badges">
+              <span class="badge badge-green">Active</span>
+              <span class="badge badge-green">Always On</span>
+              <span class="badge badge-gray">🇺🇸 🇨🇦</span>
+              <span class="badge badge-blue">Creator funds</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Who pays</span><span class="data-value">Platform or client. Packages can be fully client-paid, partially funded, or fully funded depending on media spend.</span></div>
+        <div class="data-row"><span class="data-label">Funds ratio</span><span class="data-value">10:1 (funds are limited)</span></div>
+        <div class="data-row"><span class="data-label">Min. package</span><span class="data-value mono">$30,000 USD</span></div>
+        <div class="data-row"><span class="data-label">Package limit</span><span class="data-value">Based on individual advertiser</span></div>
+        <div class="data-row"><span class="data-label">Package flexibility</span><span class="data-value">Yes</span></div>
+        <div class="data-row"><span class="data-label">Timeline</span><span class="data-value mono">30 days workback</span></div>
+        <div class="data-row"><span class="data-label">Included usage</span><span class="data-value">90 days O&O + 90 days paid usage on Snap. No exclusivity.</span></div>
+        <div class="data-row"><span class="data-label">$30K Intro</span><span class="data-value">New partners only. 2 Emerging + 2 Growing creators. 4 videos. 25K–250K follower range.</span></div>
+        <div class="data-row"><span class="data-label">$50K package</span><span class="data-value">Emerging: 6–8 creators (25K–75K) OR Growing: 5–6 creators (75K–250K) OR Established: 4–5 creators (250K–500K). 1 video per creator.</span></div>
+        <div class="data-row"><span class="data-label">$100K package</span><span class="data-value">US only. Est.+Marque: 5–7 videos (250K–1M) OR Marque+VIP: 4–6 videos (500K–5M). Top-tier talent, premium reach.</span></div>
+      </div>
+
+      <!-- Snap Creator Agency Partner Program -->
+      <div class="card" data-platform="snap" data-tags="both media-credits active client-pays" data-searchable="snap creator agency partner program ad credits coupon spend thresholds">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Creator Agency Partner Program</div>
+            <div class="card-badges">
+              <span class="badge badge-green">Active</span>
+              <span class="badge badge-blue">Begins May 2026</span>
+              <span class="badge badge-gray">🇺🇸 🇨🇦</span>
+              <span class="badge badge-amber">Media credits</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">Incentive type</span><span class="data-value">Ad credit coupon when client hits certain thresholds of creator ad spend</span></div>
+        <div class="data-row"><span class="data-label">Coupon range</span><span class="data-value mono">$10,000 min – $50,000 max per advertiser</span></div>
+        <div class="data-row"><span class="data-label">Coupon use</span><span class="data-value">Must be spent 1 of 3 ways: Net-New Creator Ads Spend, Creator-Led Sponsored Snap, or Competitive Repurposing</span></div>
+        <div class="data-row"><span class="data-label">Frequency</span><span class="data-value">One coupon per advertiser per quarter. No agency-wide cap.</span></div>
+        <div class="data-row"><span class="data-label">Funds ratio</span><span class="data-value">5:1</span></div>
+        <div class="data-row"><span class="data-label">Who pays</span><span class="data-value">Client (production client-funded; Snap provides credits)</span></div>
+        <div class="data-row"><span class="data-label">Eligible clients</span><span class="data-value">Snap determines — requires Snap approval</span></div>
+        <div class="data-row"><span class="data-label">Use WBS</span><span class="data-value">Standard (production is client-funded)</span></div>
+      </div>
+    </div>
+
+    <div class="section-label">Canada Packages — Collab Studio</div>
+    <div class="cards-grid">
+      <div class="card" data-platform="snap" data-tags="ca creator-funds active" data-searchable="snap canada collab studio 30k 50k 75k packages">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Snap Collab Studio (CA)</div>
+            <div class="card-badges">
+              <span class="badge badge-green">Active</span>
+              <span class="badge badge-gray">🇨🇦 Only</span>
+            </div>
+          </div>
+        </div>
+        <div class="data-row"><span class="data-label">$30K Intro</span><span class="data-value">Same as US intro package (new partners only)</span></div>
+        <div class="data-row"><span class="data-label">$50K package</span><span class="data-value">Same tier options as US</span></div>
+        <div class="data-row"><span class="data-label">$75K package</span><span class="data-value">Canada only. Est.+Marque: 4–5 videos (250K–1M) OR Marque+VIP: 3–4 videos (500K–5M). Higher-profile, premium talent.</span></div>
+        <div class="data-row"><span class="data-label">Standard inclusions</span><span class="data-value">90-day usage, 1-round edit, 3-day exclusivity window, 30 business-day workback, performance report included</span></div>
+      </div>
+    </div>
+
+    <div class="section-label">Snap Add-ons (client pays #paid directly)</div>
+    <div class="addons-card" data-tags="snap">
+      <div class="addons-header"><span>Add-on</span><span>Options</span><span>% of package price</span></div>
+      <div class="addons-row"><span class="addon-name">Creator Exclusivity</span><span class="addon-options">2 weeks / 1 month / 2 months / 3 months</span><span class="addon-price">5% / 10% / 20% / 30%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Usage</span><span class="addon-options">2 weeks / 1 month / 2 months<br><em style="font-size:11px">VIP/Celebrity: custom</em></span><span class="addon-price">5% / 10% / 15%</span></div>
+      <div class="addons-row"><span class="addon-name">Off-Platform Usage</span><span class="addon-options" style="color: var(--tag-red-text)">Not available on Snap</span><span class="addon-price na-badge">N/A</span></div>
+      <div class="addons-row"><span class="addon-name">Expedited Timeline</span><span class="addon-options">Rush (25 days)</span><span class="addon-price">15%</span></div>
+      <div class="addons-row"><span class="addon-name">Additional Edits</span><span class="addon-options">Based on creator pricing</span><span class="addon-price">Based on creator pricing</span></div>
+    </div>
+
+    <div class="notes-card" data-tags="snap">
+      <div class="notes-label">Operating notes &amp; caveats</div>
+      <ul class="notes-list">
+        <li><strong style="font-weight:600">Off-platform usage is not available on Snap.</strong> Do not promise it. Content stays on Snap.</li>
+        <li>Collab Studio funding is limited at 10:1. Confirm Snap's available funds before committing a fully-funded proposal.</li>
+        <li>Agency Partner Program coupons require Snap approval — do not guarantee eligibility. One coupon per advertiser per quarter.</li>
+        <li>$30K intro package is for first-time Collab Studio activations only. Existing activations must use $50K+ tiers.</li>
+        <li>$100K (US) and $75K (CA) packages are for premium/VIP talent — confirm talent pool availability with partnerships before pitching these tiers.</li>
+        <li>Creator Agency Partner Program launches May 2026. Do not pitch before launch; check with Natasha for pre-launch activity guidance.</li>
+        <li>Snap PM: Natasha.</li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<script>
+let activePlatform = 'all';
+let activeQuickFilter = null;
+let activeTypeFilter = 'type-all';
+let searchQuery = '';
+
+function filterPlatform(platform, btn) {
+  activePlatform = platform;
+  activeQuickFilter = null;
+  document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function quickFilter(tag, btn) {
+  if (activeQuickFilter === tag) {
+    activeQuickFilter = null;
+    btn.classList.remove('active');
+  } else {
+    activeQuickFilter = tag;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  activePlatform = 'all';
+  document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.platform-btn').classList.add('active');
+  applyFilters();
+}
+
+function toggleFilterPill(pill, type) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  activeTypeFilter = type;
+  applyFilters();
+}
+
+function handleSearch(val) {
+  searchQuery = val.toLowerCase().trim();
+  applyFilters();
+}
+
+function applyFilters() {
+  const sections = document.querySelectorAll('.platform-section');
+  let anyVisible = false;
+
+  sections.forEach(section => {
+    const platform = section.dataset.platform;
+    let sectionVisible = (activePlatform === 'all' || activePlatform === platform);
+
+    const cards = section.querySelectorAll('.card');
+    let anyCardVisible = false;
+
+    cards.forEach(card => {
+      const tags = (card.dataset.tags || '').toLowerCase();
+      const searchable = (card.dataset.searchable || '').toLowerCase() + ' ' + tags;
+
+      let show = true;
+
+      if (activeQuickFilter && !tags.includes(activeQuickFilter)) show = false;
+
+      if (activeTypeFilter === 'type-creator' && !tags.includes('creator-funds')) show = false;
+      if (activeTypeFilter === 'type-media' && !tags.includes('media-credits')) show = false;
+
+      if (searchQuery) {
+        const platformName = platform.toLowerCase();
+        if (!searchable.includes(searchQuery) && !platformName.includes(searchQuery)) show = false;
+      }
+
+      card.classList.toggle('hidden', !show);
+      if (show) anyCardVisible = true;
+    });
+
+    const narratives = section.querySelectorAll('.narrative-card, .notes-card, .addons-card');
+    const filterActive = activeQuickFilter || activeTypeFilter !== 'type-all' || searchQuery;
+    narratives.forEach(el => {
+      if (filterActive && !anyCardVisible) {
+        el.classList.add('hidden');
+      } else {
+        el.classList.remove('hidden');
+      }
+    });
+
+    const showSection = sectionVisible && (anyCardVisible || !filterActive);
+    section.classList.toggle('hidden', !showSection);
+    if (showSection) anyVisible = true;
+  });
+
+  document.getElementById('empty-state').style.display = anyVisible ? 'none' : 'block';
+}
+</script>
+</div>
+</div>
+<script>
+function checkPw() {
+  const val = document.getElementById('pw-input').value;
+  if (val === 'hello123') {
+    document.getElementById('pw-wall').style.display = 'none';
+    document.getElementById('app-content').style.display = 'block';
+  } else {
+    const err = document.getElementById('pw-error');
+    err.textContent = 'Incorrect password.';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+    setTimeout(() => { err.textContent = ''; }, 2500);
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('pw-input').focus();
+});
+</script>
+</body>
+</html>
